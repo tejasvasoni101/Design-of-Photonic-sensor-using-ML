@@ -3,10 +3,9 @@
 % Dr. Zhuomin Zhang's group at Georgia Tech
 % Last modified by Bo Zhao (September 2014)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% clear all; clc;
-temp = Tran;
+ clear all; clc;
+%temp = Tran;
 for lol = 1:10
-     
 
 c0 = 299792458;                             % speed of light in space, [m/s]
 theta =0;                                           % angle of incidence, [rad]
@@ -23,7 +22,7 @@ f2 = [psi];                                           % normalized position for 
 Num_ord = 19;                                  % number for the highest diffraction order
 for ind = 1:length(lambda)
     % Incidence medium
-      e(1) = 1.30 + lol/100 ;                                                 % Usually is air or vacuum 
+      e(1) = 1.32 + lol/100 ;                                                 % Usually is air or vacuum 
     % Layered structure
       e_m(1) = Palik_SiO2(lambda(ind));   % Ridge material (metal)  
       e_d(1) = Palik_SiO2(lambda(ind)); 
@@ -38,11 +37,14 @@ for ind = 1:length(lambda)
 
 end
   disp(lol);
- 
- temp = [temp;Tran];
+      if lol == 1
+        temp=Tran;
+      else temp = [temp;Tran];
+     end
+
  end
  figure;
- plot(wn,Tran);
+ plot(wn,temp);
 % legend('Tran');
 % xlim([5000,10000]);
 % xlabel('Wavenumber, \nu (cm^-^1)');
